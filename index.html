@@ -1,7 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Supertiger Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SupertigerDev Portfolio Page">
+
     <style>
       :root {
         --bg: rgb(38, 38, 38);
@@ -84,6 +87,9 @@
         grid-template-rows: 1fr;
         transform: translateY(0px);
         opacity: 1;
+      }
+      .item.selected > .header {
+        background-color: rgba(255, 255, 255, 0.1);
       }
       .item .header:after {
         position: absolute;
@@ -168,11 +174,14 @@
         name: "💬 Contact",
         items: [
           { name: "💬 Discord", copy: "cat.noir" },
-          { name: "💬 Nerimity", href: "https://nerimity.com/app/profile/1289157673362825217" },
+          {
+            name: "💬 Nerimity",
+            href: "https://nerimity.com/app/profile/1289157673362825217",
+          },
           { name: "🧑‍💻 GitHub", href: "https://github.com/SupertigerDev" },
           { name: "🐦 Twitter", href: "https://twitter.com/SupertigerDev" },
-        ]
-      }
+        ],
+      },
     ];
 
     const el = document.createElement("div");
@@ -188,7 +197,7 @@
         if (nested) itemEl.classList.add("nested");
 
         const btnEl = document.createElement(
-          item.href ? "a" : (item.items || item.copy) ? "button" : "div"
+          item.href ? "a" : item.items || item.copy ? "button" : "div"
         );
         if (item.href) {
           btnEl.href = item.href;
