@@ -1,0 +1,237 @@
+<html>
+  <head>
+    <title>Supertiger Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --bg: rgb(38, 38, 38);
+        --primary: rgb(167, 255, 160);
+        --color: white;
+      }
+      body {
+        background-color: var(--bg);
+        color: var(--color);
+        font-family: Arial;
+        margin: 20px;
+      }
+      h1 {
+        color: var(--primary);
+      }
+      button {
+        color: white;
+        background-color: transparent;
+        border: none;
+        text-align: start;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      .nested {
+        padding-left: 24px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-radius: 6px;
+        padding: 6px;
+        background: transparent;
+
+        width: 100%;
+        transition: 0.2s;
+        padding-left: 8px;
+      }
+      .header .text {
+        position: relative;
+        pointer-events: none;
+        font-size: 14px;
+      }
+      a.header .text::before {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        height: 1px;
+        right: 0;
+        left: 24px;
+        background: var(--primary);
+      }
+      button.header:hover,
+      a.header:hover {
+        position: relative;
+        cursor: pointer;
+        z-index: 11111111;
+      }
+      button.header:hover,
+      a.header:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .items-outer {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: 200ms;
+
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+
+      .items {
+        overflow: hidden;
+      }
+
+      .item.selected > .items-outer {
+        grid-template-rows: 1fr;
+        transform: translateY(0px);
+        opacity: 1;
+      }
+      .item .header:after {
+        position: absolute;
+        content: "";
+        left: 0;
+        width: 4px;
+        height: 14px;
+        height: 0;
+        opacity: 0;
+        border-radius: 99px;
+        background: var(--primary);
+        transition: 0.2s;
+      }
+      .item.selected > .header:after {
+        height: 14px;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Supertiger</h1>
+  </body>
+
+  <script>
+    const baseItems = [
+      {
+        name: "😎 My Skills",
+        items: [
+          { name: "🌍 HTML & CSS" },
+          { name: "🎨 SCSS" },
+          { name: "💻 JavaScript & Node.js" },
+          { name: "📖 React & React Native" },
+          { name: "🪨 Solid.js" },
+          { name: "📦 Typescript" },
+          { name: "🔥 Prisma.js" },
+          { name: "🔨 MongoDB & Mongoose" },
+          { name: "🔌 WebSocket" },
+          { name: "🚀 Express" },
+        ],
+      },
+      {
+        name: "🗃️ My Projects",
+        items: [
+          { name: "💭 Nerimity Chat App", href: "https://nerimity.com" },
+          {
+            name: "🧭 Solid Navigator",
+            href: "https://github.com/SupertigerDev/solid-navigator",
+          },
+          {
+            name: "🤖 Solid Turnstile",
+            href: "https://github.com/Nerimity/solid-turnstile",
+          },
+          {
+            name: "🗄️ Solid SortableJS",
+            href: "https://github.com/Nerimity/solid-sortablejs",
+          },
+          {
+            name: "🎮 Better In Game Chat",
+            href: "https://github.com/SupertigerDev/better-in-game-chat",
+          },
+        ],
+      },
+      {
+        name: "👍 What I like",
+        items: [
+          { name: "🎮 Overwatch 2" },
+          { name: "🤓 Programming" },
+          { name: "🔨 DIY" },
+          { name: "❄️ Cold Weather" },
+          { name: "🍕 Eating Pizza" },
+        ],
+      },
+      {
+        name: "👎 What I Dislike",
+        items: [
+          { name: "🎮 Overwatch 2" },
+          { name: "🌉 Going Outside" },
+          { name: "😡 Rust Programming Language" },
+        ],
+      },
+      {
+        name: "💬 Contact",
+        items: [
+          { name: "💬 Discord", copy: "cat.noir" },
+          { name: "💬 Nerimity", href: "https://nerimity.com/app/profile/1289157673362825217" },
+          { name: "🧑‍💻 GitHub", href: "https://github.com/SupertigerDev" },
+          { name: "🐦 Twitter", href: "https://twitter.com/SupertigerDev" },
+        ]
+      }
+    ];
+
+    const el = document.createElement("div");
+
+    showItems(el, baseItems);
+
+    function showItems(baseEl, items, nested = false) {
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const itemEl = document.createElement("div");
+        itemEl.classList.add("item");
+        if (!nested) itemEl.classList.add("base");
+        if (nested) itemEl.classList.add("nested");
+
+        const btnEl = document.createElement(
+          item.href ? "a" : (item.items || item.copy) ? "button" : "div"
+        );
+        if (item.href) {
+          btnEl.href = item.href;
+          btnEl.target = "_blank";
+        }
+        const textEl = document.createElement("span");
+        textEl.classList.add("text");
+        textEl.innerText = item.name;
+        btnEl.appendChild(textEl);
+        btnEl.classList.add("header");
+        itemEl.appendChild(btnEl);
+
+        if (item.items) {
+          const itemsContainer = document.createElement("div");
+          itemsContainer.classList.add("items-outer");
+          const itemsEl = document.createElement("div");
+          itemsEl.classList.add("items");
+          showItems(itemsEl, item.items, true);
+          itemsContainer.appendChild(itemsEl);
+          itemEl.appendChild(itemsContainer);
+        }
+
+        btnEl.onclick = (e) => {
+          if (item.copy) {
+            navigator.clipboard.writeText(item.copy);
+            alert("Copied to clipboard!");
+            return;
+          }
+          if (e.target instanceof HTMLButtonElement) {
+            if (!item.items) return;
+            const selected = itemEl.classList.contains("selected");
+            if (selected) {
+              itemEl.classList.remove("selected");
+            } else {
+              itemEl.classList.add("selected");
+            }
+          }
+        };
+
+        baseEl.appendChild(itemEl);
+      }
+    }
+
+    document.body.appendChild(el);
+  </script>
+</html>
