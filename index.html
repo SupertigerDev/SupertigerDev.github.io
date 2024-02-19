@@ -3,7 +3,7 @@
   <head>
     <title>Supertiger Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="SupertigerDev Portfolio Page">
+    <meta name="description" content="SupertigerDev Portfolio Page" />
 
     <style>
       :root {
@@ -21,7 +21,7 @@
         color: var(--primary);
       }
       button {
-        color: white;
+        color: var(--primary);
         background-color: transparent;
         border: none;
         text-align: start;
@@ -67,7 +67,7 @@
       }
       button.header:hover,
       a.header:hover {
-        background-color: rgba(255, 255, 255, 0.08);
+        background-color: var(--hoverBoxColor);
       }
 
       .items-outer {
@@ -89,7 +89,7 @@
         opacity: 1;
       }
       .item.selected > .header {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--selectedBoxColor);
       }
       .item .header:after {
         position: absolute;
@@ -114,6 +114,43 @@
   </body>
 
   <script>
+    let currentTheme = "DARK";
+    const Themes = {
+      DARK: {
+        bg: "rgb(38, 38, 38)",
+        primary: "rgb(167, 255, 160)",
+        color: "white",
+        hoverBoxColor: "rgba(255, 255, 255, 0.04)",
+        selectedBoxColor: "rgba(255, 255, 255, 0.08)"
+      },
+      LIGHT: {
+        bg: "rgb(229 229 229)",
+        primary: "#0A4006",
+        color: "rgba(0, 0, 0, 0.8)",
+        hoverBoxColor: "rgba(0, 0, 0, 0.06)",
+        selectedBoxColor: "rgba(0, 0, 0, 0.1)"
+      }
+    };
+
+    function setTheme(theme) {
+      const styleEl = document.createElement("style");
+      styleEl.innerHTML = `
+      * {
+        transition: 0.2s;
+      }
+      `
+
+      document.head.appendChild(styleEl)
+      Object.keys(theme).forEach((key) => {
+        document.documentElement.style.setProperty(`--${key}`, theme[key]);
+        console.log("mm")
+      })
+      setTimeout(() => {
+        document.head.removeChild(styleEl)
+      }, 200);
+    }
+    setTheme(Themes.DARK)
+
     const baseItems = [
       {
         name: "😎 My Skills",
@@ -182,6 +219,13 @@
           { name: "🐦 Twitter", href: "https://twitter.com/SupertigerDev" },
         ],
       },
+      {
+        name: "⚙️ Settings",
+        items: [{ name: "☀️ Toggle Dark Mode", onClick() {
+          currentTheme = currentTheme === "DARK" ? "LIGHT" : "DARK";
+          setTheme(Themes[currentTheme]);
+        } }],
+      },
     ];
 
     const el = document.createElement("div");
@@ -197,7 +241,7 @@
         if (nested) itemEl.classList.add("nested");
 
         const btnEl = document.createElement(
-          item.href ? "a" : item.items || item.copy ? "button" : "div"
+          item.href ? "a" : (item.items || item.copy || item.onClick) ? "button" : "div"
         );
         if (item.href) {
           btnEl.href = item.href;
@@ -221,6 +265,10 @@
         }
 
         btnEl.onclick = (e) => {
+          if (item.onClick) {
+            item.onClick(e);
+            return;
+          }
           if (item.copy) {
             navigator.clipboard.writeText(item.copy);
             alert("Copied to clipboard!");
