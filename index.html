@@ -146,7 +146,6 @@
       document.head.appendChild(styleEl)
       Object.keys(theme).forEach((key) => {
         document.documentElement.style.setProperty(`--${key}`, theme[key]);
-        console.log("mm")
       })
       setTimeout(() => {
         document.head.removeChild(styleEl)
