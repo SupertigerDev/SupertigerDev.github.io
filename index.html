@@ -124,15 +124,15 @@
         primary: "rgb(167, 255, 160)",
         color: "white",
         hoverBoxColor: "rgba(255, 255, 255, 0.04)",
-        selectedBoxColor: "rgba(255, 255, 255, 0.08)"
+        selectedBoxColor: "rgba(255, 255, 255, 0.08)",
       },
       LIGHT: {
         bg: "rgb(229 229 229)",
         primary: "#0A4006",
         color: "rgba(0, 0, 0, 0.8)",
         hoverBoxColor: "rgba(0, 0, 0, 0.06)",
-        selectedBoxColor: "rgba(0, 0, 0, 0.1)"
-      }
+        selectedBoxColor: "rgba(0, 0, 0, 0.1)",
+      },
     };
 
     function setTheme(theme) {
@@ -141,17 +141,17 @@
       * {
         transition: 0.2s;
       }
-      `
+      `;
 
-      document.head.appendChild(styleEl)
+      document.head.appendChild(styleEl);
       Object.keys(theme).forEach((key) => {
         document.documentElement.style.setProperty(`--${key}`, theme[key]);
-      })
+      });
       setTimeout(() => {
-        document.head.removeChild(styleEl)
+        document.head.removeChild(styleEl);
       }, 200);
     }
-    setTheme(Themes.DARK)
+    setTheme(Themes.DARK);
 
     const baseItems = [
       {
@@ -174,8 +174,17 @@
         items: [
           { name: "💭 Nerimity Chat App", href: "https://nerimity.com" },
           {
+            name: "⌛ Mimiqueue",
+            href: "https://github.com/Nerimity/Mimiqueue",
+          },
+          {
             name: "🧭 Solid Navigator",
             href: "https://github.com/SupertigerDev/solid-navigator",
+          },
+
+          {
+            name: "😊 Solid Emoji Picker",
+            href: "https://github.com/Nerimity/solid-emoji-picker",
           },
           {
             name: "🤖 Solid Turnstile",
@@ -222,10 +231,15 @@
       },
       {
         name: "⚙️ Settings",
-        items: [{ name: "☀️ Toggle Dark Mode", onClick() {
-          currentTheme = currentTheme === "DARK" ? "LIGHT" : "DARK";
-          setTheme(Themes[currentTheme]);
-        } }],
+        items: [
+          {
+            name: "☀️ Toggle Dark Mode",
+            onClick() {
+              currentTheme = currentTheme === "DARK" ? "LIGHT" : "DARK";
+              setTheme(Themes[currentTheme]);
+            },
+          },
+        ],
       },
     ];
 
@@ -242,7 +256,11 @@
         if (nested) itemEl.classList.add("nested");
 
         const btnEl = document.createElement(
-          item.href ? "a" : (item.items || item.copy || item.onClick) ? "button" : "div"
+          item.href
+            ? "a"
+            : item.items || item.copy || item.onClick
+            ? "button"
+            : "div"
         );
         if (item.href) {
           btnEl.href = item.href;
