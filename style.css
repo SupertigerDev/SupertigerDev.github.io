@@ -84,7 +84,7 @@ header {
 
 .info-section {
   display: flex;
-  align-items: center;
+  align-items: start;
   margin-top: 34px;
   opacity: 0;
   animation:section-animation 0.4s ease-in-out;
