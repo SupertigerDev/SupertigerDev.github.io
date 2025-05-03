@@ -109,7 +109,6 @@ header {
 
   }
   .greeting {
-    text-align: center;
     .highlight {
       color: var(--primary-color);
     }
