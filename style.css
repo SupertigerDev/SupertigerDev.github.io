@@ -37,8 +37,9 @@ body {
 }
 
 .container {
-  width: 60vw;
-  max-width: 1530px;
+  max-width:1200px;
+  margin-right: 22px;
+  margin-left: 22px;
 }
 
 * {
@@ -229,17 +230,6 @@ header {
   filter: invert(1);
 }
 
-@media (max-width: 1750px) {
-  .container {
-    width: 80vw;
-  }
-}
-@media (max-width: 1060px) {
-  .container {
-    width: 90vw;
-  }
-}
-
 
 @media (max-width: 940px) {
   header {
@@ -247,10 +237,10 @@ header {
     margin-left: 16px;
   }
   .container {
-    width: initial;
     margin-right: 8px;
     margin-left: 8px;
   }
+
   .info-section {
     align-items: center;
     flex-direction: column;
