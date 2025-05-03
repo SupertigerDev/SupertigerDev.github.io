@@ -1,14 +1,79 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Supertiger Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="SupertigerDev Portfolio Page" />
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Supertiger</h1>
-  </body>
+    <meta charset="UTF-8" />
 
-  <script src="script.js"></script>
+    <meta property="og:title" content="Supertiger Portfolio">
+    <meta property="og:description" content="I love coding and building dynamic web experiences. My passion lies in using ReactJS, SolidJS, and TypeScript to create modern, efficient applications.">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="https://supertigerdev.github.io/">
+    <meta property="og:site_name" content="Supertiger Portfolio">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supertiger Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body class="dark">
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <h2 class="title">Supertiger</h2>
+        <button id="toggle-theme">Light Mode</button>
+      </header>
+      <!-- Info Section -->
+      <div class="info-section">
+        <img src="./assets/logo.png" class="logo" alt="Supertiger Logo">
+        <div class="info">
+          <div class="badge">Looking To Work!</div>
+          <h1 class="greeting">I Love <span class="highlight">Programming!</span></h1>
+          <div class="description">I love coding and building dynamic web experiences. My passion lies in using ReactJS, SolidJS, and TypeScript to create modern, efficient applications.</div>
+          
+          <div class="cards-section">
+            <h3>Experiences</h3>
+            <div class="card-list">
+              <div><img src="assets/vite-logo.svg" alt="Vite">Vite</div>
+              <div><img src="assets/react-logo.svg" alt="ReactJS">ReactJS</div>
+              <div><img src="assets/react-logo.svg" alt="React Native">React Native</div>
+              <div><img src="/assets/solidjs-logo.svg" alt="SolidJS">SolidJS</div>
+              <div><img src="/assets/scss-logo.svg" alt="SolidJS">SCSS</div>
+              <div><img src="/assets/typescript-logo.svg" alt="TypeScript">Typescript</div>
+              <div>
+                <img src="assets/prisma-logo.svg" data-hide-on-dark alt="Prisma">
+                <img src="assets/prisma-logo-white.svg" data-hide-on-light alt="Prisma">
+                Prisma
+              </div>
+            </div>
+          </div>
+          <div class="cards-section">
+            <h3>Contact Me</h3>
+            <div class="card-list">
+              <a href="https://github.com/SupertigerDev" target="_blank" rel="noopener noreferrer">
+                <img src="assets/github-logo.svg" invert-on-dark alt="GitHub">
+                GitHub
+              </a>
+              <a href="mailto:saawalkhn@googlemail.com" target="_blank" rel="noopener noreferrer">
+                <img src="assets/email-icon.svg" invert-on-dark alt="Email">
+                Email
+              </a>
+
+              <a href="https://discord.com/users/260371016348336128" target="_blank" rel="noopener noreferrer">
+                <img src="assets/discord-logo.svg" data-hide-on-dark alt="Discord">
+                <img src="assets/discord-logo-white.svg" data-hide-on-light alt="Discord">
+                Discord
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- Projects Section -->
+       <div class="projects-section">
+        <h2 class="title">My Projects</h2>
+        <div class="project-list" id="projects">
+
+        </div>
+       </div>
+    </div>
+  </body>
 </html>
