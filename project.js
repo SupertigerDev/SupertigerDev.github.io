@@ -21,6 +21,12 @@ const projects = [
     sourceLink: "https://github.com/Nerimity",
   },
   {
+    title: "Fetcher App",
+    description: "Test fetching data from an API from a beautiful minimal interface.",
+    stack: ["React", "Electron"],
+    sourceLink: "https://github.com/SupertigerDev/fetcher-app",
+  },
+  {
     title: "Discord Presence Tracker API",
     description: "Track Discord presence using a GET request or websocket.",
     link: "https://supertiger.nerimity.com/trackdispresence/:userId",
